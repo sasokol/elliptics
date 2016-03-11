@@ -342,9 +342,14 @@ public:
 	}
 
 	argument_data_base(const char *data) :
-		m_data(pointer_type::from_raw(const_cast<char *>(data), std::strlen(data)))
+		m_data(pointer_type::from_raw(const_cast<char *>(data), std::strlen(data))) // It isn't correct for binary data.
 	{
 	}
+
+        argument_data_base(const char *data, size_t size) :
+                m_data(pointer_type::from_raw(const_cast<char *>(data), size))
+        {
+        }
 
 	const void *data() const
 	{
